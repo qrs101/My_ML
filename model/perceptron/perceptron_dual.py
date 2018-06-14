@@ -56,5 +56,5 @@ class Perceptron:
 
         self.w = np.sum(tmp * X, axis = 0)
 
-    def preditc(self, x):
+    def predict(self, x):
         return np.sign(np.dot(self.w, x) + self.b)

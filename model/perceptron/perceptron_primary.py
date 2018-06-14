@@ -3,8 +3,8 @@ import numpy as np
 class Perceptron:
     def __init__(self, eta, max_epoch = 1000):
         """
-        :param eta: 学习率
-        :param max_epoch: 最大迭代次数
+        :param eta:        学习率
+        :param max_epoch:  最大迭代次数
         """
         self.w = None
         self.b = None
