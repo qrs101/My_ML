@@ -10,8 +10,6 @@ def load_data_1():
         curLine = line.strip().split('\t')
         tmp = list()
         for i in range(3):
-            print(curLine[i])
-            print(type(curLine[i]))
             tmp.append(float(curLine[i]))
         x.append(tmp)
         y.append(int(curLine[3]))
@@ -28,8 +26,6 @@ def load_data_2():
         for number in file.read():
             if number == '\n':
                 continue
-            #print(number)
-            #print(type(number))
             tmp.append(int(number))
         train_x.append(tmp)
         train_y.append(int(filename[0]))
@@ -57,15 +53,15 @@ def example_1():
     x = norm(x)
     m = int(0.1 * x.shape[0])
 
-    c1 = knn.knn()
+    c1 = knn.KNN()
     c1.fit(x[m:], y[m:], use_kd_tree=False)
-    c2 = knn.knn()
+    c2 = knn.KNN()
     c2.fit(x[m:], y[m:], use_kd_tree=True)
 
     err1, err2 = 0, 0
     for i in range(m):
-        y1 = c1.predict(x[i], k=3, detailed=True)
-        y2 = c2.predict(x[i], k=3, detailed=True)
+        y1 = c1.predict(x[i], k=3, detailed=False)
+        y2 = c2.predict(x[i], k=3, detailed=False)
         if y1 != y[i]:
             err1 += 1
         if y2 != y[i]:
@@ -77,12 +73,12 @@ def example_1():
 def example_2():
     train_x, train_y, test_x, test_y = load_data_2()
 
-    c = knn.knn()
+    c = knn.KNN()
     c.fit(train_x, train_y, use_kd_tree=False)
 
     err = 0
     for i in range(len(test_x)):
-        predict_y = c.predict(test_x[i], k=5, detailed=False)
+        predict_y = c.predict(test_x[i], k=3, detailed=False)
         if predict_y != test_y[i]:
             err += 1
 

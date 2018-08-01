@@ -1,5 +1,5 @@
 import numpy as np
-import model.LogisticRegression.LogisticRegression as lr
+import model.logistic_regression.logistic_regression as lr
 
 def loadData():
     train_file = open("../dataset/horseColicTraining.txt")

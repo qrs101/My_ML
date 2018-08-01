@@ -4,7 +4,7 @@ import model.heap as h
 def distance(a, b):
     return np.linalg.norm(a - b)
 
-class kd_note:
+class KdNote:
     def __init__(self, vector=None, label=None, split=None, left=None, right=None, parent=None):
         self.vector = vector
         self.label = label
@@ -14,7 +14,7 @@ class kd_note:
         self.parent = parent
         self.visited = False
 
-class kd_tree:
+class KdTree:
     def __init__(self, data, label):
         if data.ndim != 2:
             print("Invalid data!")
@@ -37,7 +37,7 @@ class kd_tree:
 
         left = self._build_kd_tree((split + 1) % self.dim, data[: n], label[: n])
         right = self._build_kd_tree((split + 1) % self.dim, data[n + 1:], label[n + 1:])
-        node = kd_note(data[n], label[n], split, left, right)
+        node = KdNote(data[n], label[n], split, left, right)
 
         if left is not None:
             left.parent = node
@@ -120,7 +120,7 @@ class kd_tree:
         print(root.vector)
         self.in_order(root.right)
 
-class knn:
+class KNN:
     def __init__(self):
         self.x = None
         self.y = None
@@ -139,7 +139,7 @@ class knn:
         self.kd_tree = None
         self.use_kd_tree = use_kd_tree
         if self.use_kd_tree:
-            self.kd_tree = kd_tree(x, y)
+            self.kd_tree = KdTree(x, y)
 
     def predict(self, x, k=5, detailed=False):
         if self.use_kd_tree:

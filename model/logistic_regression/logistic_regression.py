@@ -4,7 +4,7 @@ def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
 class LogisticRegression:
-    def __init__(self, eta, epoch = 1000, batch_size = 1):
+    def __init__(self, eta=0.1, epoch=1000, batch_size=1):
         """
         :param eta:         学习率
         :param epoch:       迭代次数
@@ -16,7 +16,7 @@ class LogisticRegression:
         self.epoch = epoch
         self.batch_size = batch_size
 
-    def fit(self, X, y, detailed = False):
+    def fit(self, X, y, detailed=False):
         """
         :param X:         输入矩阵, 2维numpy数组
         :param y:         输入标签, 1维numpy数组
