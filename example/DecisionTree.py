@@ -1,5 +1,4 @@
 import numpy as np
-import random
 import model.decision_tree.decision_tree as dt
 
 def load_data():
@@ -28,22 +27,23 @@ def example_2():
     x = iris.data
     y = iris.target
     train = list(range(150))
-    test, all = [], 30
+    test, all = [], 50
     for i in range(all):
-        r = random.randint(0, len(train) - 1)
+        r = np.random.randint(len(train))
         test.append(train[r])
         train.remove(train[r])
 
-    c = dt.DecisionTree(type="CART", input_attr=1, output_attr=0)
+    c = dt.DecisionTree(input_attr=1, output_attr=0, type="CART")
     c.fit(x[train], y[train])
     err = 0
     for i in test:
         res = c.predict(x[i])
-        # print(res, y[i])
+        #print(res, y[i])
         if res != y[i]:
             err += 1
-
+    print(err, all)
     print(err / all)
 
 if __name__ == "__main__":
+    #example_1()
     example_2()
